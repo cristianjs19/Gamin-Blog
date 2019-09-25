@@ -1,0 +1,30 @@
+pytz # https://github.com/stub42/pytz
+python-slugify  # https://github.com/un33k/python-slugify
+Pillow  # https://github.com/python-pillow/Pillow
+argon2-cffi  # https://github.com/hynek/argon2_cffi
+redis # pyup: < 3 # https://github.com/antirez/redis
+
+# Django
+# ------------------------------------------------------------------------------
+#django  # pyup: < 2.1  # https://www.djangoproject.com/
+Django==2.2.5
+django-environ  # https://github.com/joke2k/django-environ
+django-model-utils  # https://github.com/jazzband/django-model-utils
+django-allauth  # https://github.com/pennersr/django-allauth
+django-crispy-forms  # https://github.com/django-crispy-forms/django-crispy-forms
+django-jet  # https://github.com/geex-arts/django-jet
+django-redis  # https://github.com/niwinz/django-redis
+django-webpack-loader # https://github.com/owais/django-webpack-loader
+
+#Django==2.2.5
+#django-crispy-forms==1.7.2
+django-markdown-deux==1.0.5
+django-pagedown==2.0.3
+markdown2==2.3.8
+#Pillow==6.1.0
+#pytz==2019.2
+sqlparse==0.3.0
+
+# Django REST Framework
+djangorestframework  # https://github.com/encode/django-rest-framework
+coreapi  # https://github.com/core-api/python-client
