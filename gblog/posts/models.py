@@ -27,6 +27,7 @@ class Post(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=CASCADE)
 	titulo = models.CharField(max_length=150)
 	slug = models.SlugField(unique=True)
+	description = models.CharField(max_length=200,null=True, blank=True)
 	imagen = models.ImageField(upload_to=upload_location, 
 			null=True, 
 			blank=True,

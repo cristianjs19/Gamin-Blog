@@ -14,8 +14,8 @@ class UserLoginForm(forms.Form):
 	password = forms.CharField(widget=forms.PasswordInput)
 
 	def clean(self, *args, **kwargs):
-		usuario = self.cleaned_data.get("User")
-		password = self.cleaned_data.get("Password")
+		usuario = self.cleaned_data.get("usuario")
+		password = self.cleaned_data.get("password")
 
 		if usuario and password:
 			user_qs1 = User.objects.filter(username__iexact=usuario)

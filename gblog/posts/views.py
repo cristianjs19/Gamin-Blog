@@ -16,7 +16,6 @@ from .models import Post
 from .forms import PostForm
 from .utils import get_read_time
 
-from .utils import get_read_time
 
 # Create your views here.
 def post_create(request):
@@ -55,6 +54,7 @@ def post_detail(request, slug=None):
 	
 	context = {
 		"titulo": instance.titulo,
+		"description": instance.description,
 		"instance": instance,
 		"share_string": share_string,
 		
@@ -81,7 +81,7 @@ def post_list(request):
 		queryset = paginator.page(paginator.num_pages)
 
 	context = {
-	"titulo": "Super Gaming Blog!",
+	"titulo": "Gaming Blog!",
 	"object_list": queryset,
 	"page_request_var": page_request_var,
 	"hoy": hoy,

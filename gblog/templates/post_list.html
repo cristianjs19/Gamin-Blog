@@ -1,58 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class='col-sm-6 col-sm-offset-3'> 
-<h1>{{ titulo }}</h1>
+<!-- <div class='col-sm-6 col-sm-offset-3'>  -->
+<!-- <h1>{{ titulo }}</h1> -->
 
 
 
 {% for obj in object_list %}
-<div class="row">
-    <div class='col-sm-12'>
-        <div class="thumbnail">
-            {% if obj.imagen %}
-            <img src='{{ obj.imagen.url }}' class='img-responsive' />
-            {% endif %}
-    <div class="caption post-detail-art">
-        {% if obj.draft %}
-            <h3>DRAFT</h3>
-        {% endif %} 
-        {% if obj.publish > hoy %}
-            <h3>FUTURE POST</h3>
-        {% endif %}
-        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.titulo }}</a> <small> {{ obj.publish }}</small></h3>
-        {% if obj.user.get_full_name %}
-            <p>Autor: {{ obj.user.get_full_name }}</p>
-        {% else %}
-            <p>Autor: {{ obj.user }}</p>
-        {% endif %}
 
-        {{ obj.get_markdown|truncatewords_html:10 }}
-        <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">Ver</a> </p>
-    </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview">
+              <a href="{{ obj.get_absolute_url }}">
+                <h2 class="post-title">
+                  {{ obj.titulo }}
+                </h2>
+                <h3 class="post-subtitle">
+                  {{ obj.description }}
+                </h3>
+              </a>
+              <p class="post-meta">Posted by
+                <a href="#">{{ obj.user }}</a>
+                on {{ obj.publish }}</p>
+            </div>
+            <hr>
+          </div>
         </div>
     </div>
-<hr/>
-<br/>
-</div>
+    
 {% endfor %}
+    <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="pagination">
+        <span class="step-links">
+            {% if object_list.has_previous %}
+                <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">Anterior</a>
+            {% endif %}
 
-<div class="pagination">
-    <span class="step-links">
-        {% if object_list.has_previous %}
-            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">anterior</a>
-        {% endif %}
+            <span class="current">
+                Pag. {{ object_list.number }} de {{ object_list.paginator.num_pages }}.
+            </span>
 
-        <span class="current">
-            Pag. {{ object_list.number }} de {{ object_list.paginator.num_pages }}.
+    {% if object_list.has_next %}
+    <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">Siguiente</a>
+    {% endif %}
         </span>
+    </div>
+              </div>
+            </div>
+        </div>
 
-{% if object_list.has_next %}
-<a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">siguiente</a>
-{% endif %}
-    </span>
-</div>
-
-</div>
 {% endblock %}
 

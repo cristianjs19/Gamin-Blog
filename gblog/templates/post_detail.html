@@ -2,57 +2,84 @@
 {% load urlify %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}
-{{ instance.titulo }} | {{ block.super }}
-{% endblock head_title %}
 
-<style>
-	{% block style %}
-	h1 {
-		color:green;
-	}
-	{% endblock %}
-</style>
 
+
+{% block header %}
+  <!-- Page Header -->
+  {% if instance.imagen %}
+	<header class="masthead" style="background-image: url('{{ instance.imagen.url }}')">
+  {% else %}
+  <header class="masthead" style="background-image: url('../static/img/steamorigin.jpg')">
+  {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{% block head_title %}{{ instance.titulo }}{% endblock head_title %}</h1>
+            {% if instance.description %}
+            <h2 class="subheading">{{ instance.description }}</h2>
+            {% endif %}
+            <span class="meta">Posted by
+              {{ instance.user }}
+              on {{ instance.publish }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% endblock %}
 
 {% block content %}
-<div class='col-sm-6 col-sm-offset-3'>
-	{% if instance.imagen %}
-	<img src='{{ instance.imagen.url }}' class='img-responsive'>
-	{% endif %}
-<h1>{{ titulo }}  <small>{% if instance.draft %} <span style='color:red;'>DRAFT</span> {% endif %}
-{{ instance.publish }}</small></h1><br>
-	
-	<p>Time lecture: {% if instance.read_time < 5 %}< 5 min {% else %}{{ instance.read_time }} minutos{% endif %}</p>
 
-	{% if instance.user.get_full_name %}
-	<p>Author: {{ instance.user.get_full_name }}</p>
-	{% else %}
-	<p>Author: {{ instance.user }}</p>
-	{% endif %}
-<!-- 
-{{ share_string }}<br>
-{{ instance.titulo|urlify }}<br>
- -->
-<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
-<i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>
+
+
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto"><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+<i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i></a>
 <a href="https://twitter.com/home?status={{ instance.titulo|urlify }} {{ request.build_absolute_uri }}">
-<i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
+<i class="fab fa-twitter-square fa-2x" aria-hidden="true"></i></a></div>
+	</div>
+</div>
 
-<br/><br/><hr/>
+<br/>
 
-<div class='row'>
+
+<article>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+
+				<p>{{ instance.get_markdown }}</p>
+				<br/>
+			</div>
+		</div>
+
+	</div>
+</article>
+
+
+<!-- <div class='row'>
 <div class='col-sm-12'>
-<div class='post-detail-art'>{{ instance.get_markdown }}</div>
-<br/><hr/>
+<div class='post-detail-art'>{{ instance.get_markdown }}</div> -->
 
 
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="box_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div><hr/>
+		</div>
+	</div>
+</div>
 
 
 <!-- <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div> -->
-<br/>
-<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="box_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
-<br><br>
+
 </div>
 </div>
 {% endblock %}

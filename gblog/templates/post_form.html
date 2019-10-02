@@ -5,20 +5,48 @@
 {{ form.media }}
 {% endblock head_extra %}
 
+{% block header %}
+  <!-- Page Header -->
+  {% if instance.imagen %}
+	<header class="masthead" style="background-image: url('{{ instance.imagen.url }}')">
+  {% else %}
+  <header class="masthead" style="background-image: url('http://localhost:8000/static/img/home-bg.jpg')">
+  {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{% block head_title %}{{ instance.titulo }}{% endblock head_title %}</h1>
+            {% if instance.description %}
+            <h2 class="subheading">{{ instance.description }}</h2>
+            {% endif %}
+            <span class="meta">Posted by
+              {{ instance.user }}
+              on {{ instance.publish }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% endblock %}
+
 {% block content %}
-<div class='col-sm-6'>
+
+<div class='col-sm-5 float-left' id="prev">
 <h1>Preview</h1><hr/>
 <div class='content-preview'>
 	<h3 id='preview-title'></h3>
 	<p id='preview-content'></p>
 </div>
 </div>
-<div class='col-sm-6'> 
+<div class='col-sm-5 float-right' id="prev"> 
 <h1>Post Form</h1><hr/>
 <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
 {{ form|crispy }}
-<input type='submit' class='btn btn-default' value='Create Post'/>
+<input type='submit' class='btn btn-primary' value='Create Post'/>
 </form>
 </div>
+
 {% endblock %}
 
