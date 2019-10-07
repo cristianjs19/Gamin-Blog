@@ -74,7 +74,7 @@ THIRD_PARTY_APPS = [
     'pagedown',
 ]
 LOCAL_APPS = [
-    'gblog.users.apps.UsersAppConfig',
+    'accounts',
     'posts'
     # Your stuff: custom apps go here
 ]
@@ -272,3 +272,8 @@ WEBPACK_LOADER = {
 }
 
 JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
+AUTH_USER_MODEL = 'accounts.Account'
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"

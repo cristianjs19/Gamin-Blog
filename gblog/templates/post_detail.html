@@ -7,8 +7,8 @@
 
 {% block header %}
   <!-- Page Header -->
-  {% if instance.imagen %}
-	<header class="masthead" style="background-image: url('{{ instance.imagen.url }}')">
+  {% if post.image %}
+	<header class="masthead" style="background-image: url('{{ post.image.image.url }}')">
   {% else %}
   <header class="masthead" style="background-image: url('../static/img/steamorigin.jpg')">
   {% endif %}
@@ -17,13 +17,13 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>{% block head_title %}{{ instance.titulo }}{% endblock head_title %}</h1>
-            {% if instance.description %}
-            <h2 class="subheading">{{ instance.description }}</h2>
+            <h1>{% block head_title %}{{ post.title }}{% endblock head_title %}</h1>
+            {% if post.description %}
+            <h2 class="subheading">{{ post.description }}</h2>
             {% endif %}
             <span class="meta">Posted by
-              {{ instance.user }}
-              on {{ instance.publish }}</span>
+              {{ post.author }}
+              on {{ post.published }}</span>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto">
 
-				<p>{{ instance.get_markdown }}</p>
+				<p>{{ post.get_markdown }}</p>
 				<br/>
 			</div>
 		</div>

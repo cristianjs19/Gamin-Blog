@@ -14,15 +14,15 @@
             <div class="post-preview">
               <a href="{{ obj.get_absolute_url }}">
                 <h2 class="post-title">
-                  {{ obj.titulo }}
+                  {{ obj.title }}
                 </h2>
                 <h3 class="post-subtitle">
                   {{ obj.description }}
                 </h3>
               </a>
               <p class="post-meta">Posted by
-                <a href="#">{{ obj.user }}</a>
-                on {{ obj.publish }}</p>
+                <a href="#">{{ obj.author }}</a>
+                on {{ obj.published }}</p>
             </div>
             <hr>
           </div>
@@ -35,16 +35,16 @@
               <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="pagination">
         <span class="step-links">
-            {% if object_list.has_previous %}
-                <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">Anterior</a>
+            {% if page_obj.has_previous %}
+                <a href="?{{ page_request_var }}={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">Previous</a>
             {% endif %}
 
             <span class="current">
-                Pag. {{ object_list.number }} de {{ object_list.paginator.num_pages }}.
+                Pag. {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
             </span>
 
-    {% if object_list.has_next %}
-    <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">Siguiente</a>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">Next</a>
     {% endif %}
         </span>
     </div>

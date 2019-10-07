@@ -4,15 +4,14 @@ from .models import Post
 
 
 class PostForm(forms.ModelForm):
-	contenido = forms.CharField(widget=PagedownWidget())
-	publish = forms.DateField(widget=forms.SelectDateWidget)
+	content = forms.CharField(widget=PagedownWidget())
 	class Meta:
 		model = Post
 		fields = [
-			"titulo",
+			"title",
+			"slug",
 			"description",
-			"contenido",
-			"imagen",
-			"draft",
-			"publish",
+			"content",
+			"image",
+			"status",
 		]

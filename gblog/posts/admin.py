@@ -1,14 +1,25 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Image
 
 # Register your models here.
 class PostModelAdmin(admin.ModelAdmin):
-	list_display = ["titulo", "actualizado", "timestamp"]
-	list_display_links = ["actualizado"]
-	list_filter = ["timestamp"]
-	list_editable = ["titulo"]
-	search_fields = ["titulo", "contenido"]
+	list_display = ["title", "updated", "published"]
+	list_display_links = ["updated"]
+	list_filter = ["published"]
+	list_editable = ["title"]
+	search_fields = ["title", "content"]
 	class Meta:
 		model = Post
 
+class ImageModelAdmin(admin.ModelAdmin):
+	list_display = ["image_id", "slug", "image_alt"]
+	list_display_links = ["image_id"]
+	list_editable = ["slug", "image_alt"]
+
+	class Meta:
+		model = Image
+
+
+
 admin.site.register(Post, PostModelAdmin)
+admin.site.register(Image, ImageModelAdmin)

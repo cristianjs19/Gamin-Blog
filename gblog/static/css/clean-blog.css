@@ -412,8 +412,8 @@ footer .copyright {
 
 
 
-div #wmd-preview-id_contenido {
-  display:none;
+#wmd-preview-id_content {
+  display: none;
 }
 
 .clear-both {
@@ -430,4 +430,8 @@ div #wmd-preview-id_contenido {
 
 .img-responsive {
   width: 100%;
+}
+
+.controls ul {
+  display: none;
 }
