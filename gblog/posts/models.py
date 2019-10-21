@@ -39,6 +39,21 @@ class Image(models.Model):
 	def __str__(self):		
 		return self.slug
 
+class Video(models.Model):
+	video_id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=50)
+	video = models.FileField(upload_to='videos', null=True, blank=True)
+
+	def __str__(self):
+		return self.name
+
+class Tag(models.Model):
+	name = models.CharField(max_length=30, null=True, blank=True)
+
+	def __str__(self):
+		return self.name
+
+
 class Post(models.Model):
 	post_id = models.AutoField(primary_key=True)
 	author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=CASCADE)
@@ -46,7 +61,9 @@ class Post(models.Model):
 	slug = models.SlugField(unique=True)
 	description = models.CharField(max_length=200,null=True, blank=True)
 	content = models.TextField()
-	image = models.ForeignKey(Image, blank=True, null=True, on_delete=models.CASCADE)
+	image = models.ManyToManyField(Image, blank=True)
+	video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
+	tags = models.ManyToManyField(Tag, blank=True)
 	status = models.CharField(max_length=15, default='published', choices=STATUS_CHOICES)
 	read_time = models.IntegerField(default=0)
 	published = models.DateTimeField(auto_now_add=True, auto_now=False)

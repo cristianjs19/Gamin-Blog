@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Image
+from .models import Post, Image, Video, Tag
 
 # Register your models here.
 class PostModelAdmin(admin.ModelAdmin):
@@ -8,6 +8,7 @@ class PostModelAdmin(admin.ModelAdmin):
 	list_filter = ["published"]
 	list_editable = ["title"]
 	search_fields = ["title", "content"]
+	
 	class Meta:
 		model = Post
 
@@ -23,3 +24,5 @@ class ImageModelAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostModelAdmin)
 admin.site.register(Image, ImageModelAdmin)
+admin.site.register(Video)
+admin.site.register(Tag)
