@@ -7,7 +7,7 @@ redis # pyup: < 3 # https://github.com/antirez/redis
 # Django
 # ------------------------------------------------------------------------------
 #django  # pyup: < 2.1  # https://www.djangoproject.com/
-Django==2.2.10
+Django==2.2.22
 django-environ  # https://github.com/joke2k/django-environ
 django-model-utils  # https://github.com/jazzband/django-model-utils
 django-allauth  # https://github.com/pennersr/django-allauth
@@ -16,7 +16,7 @@ django-jet  # https://github.com/geex-arts/django-jet
 django-redis  # https://github.com/niwinz/django-redis
 django-webpack-loader # https://github.com/owais/django-webpack-loader
 
-#Django==2.2.10
+#Django==2.2.22
 #django-crispy-forms==1.7.2
 django-markdown-deux==1.0.5
 django-pagedown==2.0.3
