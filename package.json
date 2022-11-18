@@ -23,7 +23,7 @@
     "sass-loader": "^7.1.0",
     "webpack": "^4.29.5",
     "webpack-bundle-tracker": "^0.4.2-beta",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {},
   "engines": {
