@@ -23,7 +23,7 @@ django-pagedown==2.0.3
 markdown2==2.3.8
 #Pillow==6.1.0
 #pytz==2019.2
-sqlparse==0.3.0
+sqlparse==0.5.0
 
 # Django REST Framework
 djangorestframework  # https://github.com/encode/django-rest-framework
